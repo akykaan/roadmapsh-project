@@ -1,2 +1,3 @@
-# roadmapsh-project
-html, css ve js pratikleri yapmak için roadmap.sh sitesindeki basit front denemeleri
+# TASK TRACKER
+
+double click open index.html and test the project
