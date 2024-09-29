@@ -1,2 +1,3 @@
-# roadmapsh-project
-html, css ve js pratikleri yapmak için roadmap.sh sitesindeki basit front denemeleri
+Task Tracker App
+
+https://roadmap.sh/projects/task-tracker-js

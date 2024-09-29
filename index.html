@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h3>Task Tracker</h3>
+    <div class="container">
+      <div>
+        <input
+          type="text"
+          class="input"
+          id="input"
+          placeholder="Start writing and press enter to create task"
+        />
+        <span id="enterbtn">↵</span>
+      </div>
+      <div class="task-container">
+        <ul id="task-list"></ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    const input = document.getElementById("input");
+    const enterbtn = document.getElementById("enterbtn");
+    const ulElement = document.getElementById("task-list");
+
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        createNewTask();
+      }
+    });
+
+    enterbtn.addEventListener("click", () => {
+      createNewTask();
+    });
+
+    ulElement.addEventListener("change", (e) => {
+      if (e.target && e.target.type === "checkbox") {
+        const taskElement = e.target.parentElement;
+        const textNode = [...taskElement.childNodes];
+
+        if (e.target.checked) {
+          if (textNode) {
+            textNode[1].classList.add("custom-li");
+          }
+        } else {
+          textNode[1].classList.remove("custom-li");
+        }
+      }
+    });
+    ulElement.addEventListener("click", (e) => {
+      if (e.target && e.target.tagName === "BUTTON") {
+        const taskElement = e.target.parentElement;
+        ulElement.removeChild(taskElement);
+      }
+    });
+
+    function createNewTask() {
+      if (input.value !== "") {
+        const newCheckbox = document.createElement("input");
+        const newLiElement = document.createElement("li");
+        const newLiContent = document.createElement("p");
+        const newTrash = document.createElement("button");
+
+        newCheckbox.type = "checkbox";
+        newCheckbox.id = "task-checkbox";
+
+        newTrash.id = "task-delete";
+        newTrash.textContent = "🗑";
+
+        newLiElement.className = "task";
+
+        newLiContent.textContent = input.value;
+        newLiContent.className = "";
+
+        newLiElement.appendChild(newCheckbox);
+
+        newLiElement.appendChild(newLiContent);
+        newLiElement.appendChild(newTrash);
+
+        ulElement.appendChild(newLiElement);
+      }
+    }
+  </script>
+</html>
